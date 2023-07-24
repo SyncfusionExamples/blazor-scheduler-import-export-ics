@@ -1,0 +1,85 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Schedule
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Buttons
+@using System.IO
+
+<div style="display:flex">
+    <SfButton Content="Export to iCalendar" OnClick="ExportToIcs"></SfButton>
+    <SfUploader AllowedExtensions=".ics" CssClass="calendar-import" AllowMultiple="false">
+        <UploaderButtons Browse="Choose iCalendar file"></UploaderButtons>
+        <UploaderEvents ValueChange="OnChange"></UploaderEvents>
+    </SfUploader>
+</div>
+<SfSchedule @ref="ScheduleRef" TValue="AppointmentData" Height="650px" @bind-SelectedDate="@CurrentDate">
+    <ScheduleEventSettings DataSource="@DataSource"></ScheduleEventSettings>
+    <ScheduleViews>
+        <ScheduleView Option="View.Week"></ScheduleView>
+    </ScheduleViews>
+</SfSchedule>
+
+@code {
+    private DateTime CurrentDate { get; set; } = new DateTime(DateTime.Today.Year, 1, 9);
+    SfSchedule<AppointmentData>? ScheduleRef;
+    List<AppointmentData> DataSource = new List<AppointmentData>
+    {
+        new AppointmentData { Id = 1, Subject = "Explosion of Betelgeuse Star", Location = "Dallas",  StartTime = new DateTime(DateTime.Today.Year, 1, 8, 9, 30, 0),
+        EndTime = new DateTime(DateTime.Today.Year, 1, 8, 11, 0, 0)  },
+        new AppointmentData { Id = 2, Subject = "Thule Air Crash Report", Location = "Texas", StartTime = new DateTime(DateTime.Today.Year, 1, 9, 12, 0, 0),
+        EndTime = new DateTime(DateTime.Today.Year, 1, 9, 14, 0, 0)  },
+        new AppointmentData { Id = 3, Subject = "Blue Moon Eclipse", Location = "Australia", StartTime = new DateTime(DateTime.Today.Year, 1, 10, 10, 30, 0),
+        EndTime = new DateTime(DateTime.Today.Year, 1, 10, 11, 0, 0)  },
+        new AppointmentData { Id = 4, Subject = "Meteor Showers in 2023", Location = "Canada", StartTime = new DateTime(DateTime.Today.Year, 1, 11, 13, 0, 0),
+        EndTime = new DateTime(DateTime.Today.Year, 1, 11, 14, 30, 0)  },
+        new AppointmentData { Id = 5, Subject = "Milky Way as Melting pot", Location = "Mexico", StartTime = new DateTime(DateTime.Today.Year, 1, 12, 12, 0, 0),
+        EndTime = new DateTime(DateTime.Today.Year, 1, 12, 14, 0, 0)  }
+    };
+
+    public class AppointmentData
+    {
+        public int Id { get; set; }
+        public string? Subject { get; set; }
+        public string? Location { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string? Description { get; set; }
+        public bool IsAllDay { get; set; }
+        public string? RecurrenceRule { get; set; }
+        public string? RecurrenceException { get; set; }
+        public Nullable<int> RecurrenceID { get; set; }
+    }
+    public async void ExportToIcs()
+    {
+        await ScheduleRef.ExportToICalendarAsync();
+    }
+    public async Task OnChange(UploadChangeEventArgs args)
+    {
+        foreach (UploadFiles file in args.Files)
+        {
+            StreamReader reader = new StreamReader(file.File.OpenReadStream(long.MaxValue));
+            string fileContent = await reader.ReadToEndAsync();
+            await ScheduleRef.ImportICalendarAsync(fileContent);
+        }
+    }
+}
+<style>
+    .calendar-import.e-upload {
+        border: 0;
+        padding-left: 12px !important;
+    }
+
+    @@media (max-width: 441px) {
+        .calendar-import.e-upload {
+            padding-top: 10px !important;
+        }
+    }
+
+    .calendar-import.e-upload .e-file-select-wrap {
+        padding: 0
+    }
+
+        .calendar-import.e-upload .e-file-select-wrap .e-file-drop, .calendar-import .e-upload-files {
+            display: none;
+        }
+</style>
