@@ -6,11 +6,11 @@ A quick-start project that helps you how to implement Import and export Calendar
 
 **Online examples**: https://blazor.syncfusion.com/demos/scheduler/export-and-import-ics?theme=fluent
                  
-# Prerequisites
+## Prerequisites
 
 * Visual Studio 2022
 
-# How to run the project
+## How to run the project
 
 * Checkout this project to a location in your disk.
 * Open the solution file using the Visual Studio 2022.
