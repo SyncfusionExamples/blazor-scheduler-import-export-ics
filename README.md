@@ -1,6 +1,6 @@
-# Blazor Scheduler Import Export ICS
+# How to Import and Export ICS files in Blazor Scheduler
 
-A quick-start project that helps you how to implement Import and export Calendar events as ICS files in Blazor Scheduler.
+A quick-start project that helps you how to implement import and export Calendar events as ICS files in [Blazor Scheduler](https://www.syncfusion.com/blazor-components/blazor-scheduler).
 
 ## Project Overview
 
