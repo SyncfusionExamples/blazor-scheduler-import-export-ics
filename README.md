@@ -1,10 +1,6 @@
 # How to import and export ICS files in Blazor Scheduler
 
-A quick-start project that helps you how to implement import and export Calendar events as ICS files in [Blazor Scheduler](https://www.syncfusion.com/blazor-components/blazor-scheduler).
-
-## Project Overview
-
-This project demonstrates how to efficiently import and export calendar events in the ICS (iCalendar) format using the Syncfusion Blazor Scheduler component. ICS format provides a standardized way to exchange calendar events between different applications and platforms, making it an essential feature for calendar management solutions.
+This quick-start project demonstrates how to import and export calendar events in ICS (iCalendar) format using the [Blazor Scheduler](https://www.syncfusion.com/blazor-components/blazor-scheduler). It showcases handling event data exchange across different platforms, enabling efficient integration and portability of calendar information while providing a practical guide for implementing standardized calendar management features in Blazor applications.
 
 ## Features
 
@@ -18,14 +14,13 @@ This project demonstrates how to efficiently import and export calendar events i
 
 * Visual Studio 2022
 * .NET 6.0 or higher
-* Syncfusion Blazor License
 
 ## How to run the project
 
-* Checkout this project to a location in your disk.
-* Open the solution file using the Visual Studio 2022.
-* Restore the NuGet packages by rebuilding the solution.
-* Run the project.
+1. Checkout this project to your local machine
+2. Open the solution file using Visual Studio 2022
+3. Build the solution to restore the required NuGet packages
+4. Press `F5` to start the application
 
 ## Documentation
 
